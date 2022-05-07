@@ -12,6 +12,7 @@ struct TrainersApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            var API = API()
         }
     }
 }
