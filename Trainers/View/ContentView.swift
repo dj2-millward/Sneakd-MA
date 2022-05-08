@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+    
+    @StateObject var viewModel = API()
+
+    var body: some View{
+        ForEach(viewModel.getShoe, id: \.self) { shoes in
+            Text(shoes.name!)
+        }
+        .onAppear{
+            viewModel.getShoe(shoeName: "Air Jordan 11 Retro 'Cherry'")
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+

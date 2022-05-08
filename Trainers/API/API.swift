@@ -8,18 +8,19 @@
 import Foundation
 import UIKit
 
-public final class API : NSObject
+public class API : ObservableObject
 
 {
-    public override init(){
-        
-        super.init()
-
+    @Published var getShoe: [Trainers] = []
+    
+    func getShoe(shoeName : String){
         let headers = [
             "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
             "X-RapidAPI-Key": "0ca96c3d12msh426f558cb45b490p196c7cjsna2bfd5d80839"
-        ]
-        let url = URL(string: "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20")
+            ]
+        
+        
+        let url = URL(string: "https://the-sneaker-database.p.rapidapi.com/search?limit=10&query=Air%20Jordan%2011%20Retro%20'Cherry'")
         guard url != nil else {
 
             print ("Error creating URL object")
@@ -32,55 +33,27 @@ public final class API : NSObject
         var request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval:  10)
 
         request.httpMethod = "GET"
-
         request.allHTTPHeaderFields = headers
-        
-        //Get the URLSession
 
         let session = URLSession.shared
-
-        //Create the data task
-
-        let dataTask = session.dataTask(with: request) { (data, response, error) in
-
-            //Check for errors
+        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
 
             if error == nil && data != nil {
 
-                //Try to parse out the data
                 do {
+                    let response = try! JSONDecoder().decode([Trainers].self, from: data! )
+                        DispatchQueue.main.async{
+                            self?.getShoe = response
+                        }
 
-                    let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:Any]
+                    print ("TEST", response)
+                    //let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:Any]
 
-                    print ("TEST", dictionary)
-                }
-                catch {
-                    print("Error parsing response data")
-                }
+                    
+                    }}
+             
             }
-        }
+        
         dataTask.resume()
     }
 }
-
-struct APIResponse: Decodable {
-    let name: String
-    let main: APIMain
-    let shoe: [APIShoe]
-}
-
-struct APIMain: Decodable {
-    let temp: Double
-}
-
-struct APIShoe: Decodable {
-    let description: String
-    let iconName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case description
-        case iconName = "main"
-    }
-}
-
-

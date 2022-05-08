@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+public class ShoeViewModel: ObservableObject {
+    
+
+}
+
