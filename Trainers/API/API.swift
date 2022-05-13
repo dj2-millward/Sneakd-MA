@@ -8,19 +8,27 @@
 import Foundation
 import UIKit
 
-public class API : ObservableObject
-
+public final class API : NSObject
 {
-    @Published var getShoe: [Trainers] = []
+    private var completionHandler:((ShoeInfo) -> Void)?
     
-    func getShoe(shoeName : String){
+    
+    func searchShoe(Search name: String, _ completionHandler: @escaping((ShoeInfo) -> Void)){
+        
+        self.completionHandler = completionHandler
+        
+        getData(Search: name)
+    }
+    
+    func getData(Search name: String){
+    
         let headers = [
             "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
             "X-RapidAPI-Key": "0ca96c3d12msh426f558cb45b490p196c7cjsna2bfd5d80839"
             ]
         
         
-        let url = URL(string: "https://the-sneaker-database.p.rapidapi.com/search?limit=10&query=Air%20Jordan%2011%20Retro%20'Cherry'")
+        let url = URL(string: "https://the-sneaker-database.p.rapidapi.com/search?limit=10&query=\(name)")
         guard url != nil else {
 
             print ("Error creating URL object")
@@ -40,20 +48,33 @@ public class API : ObservableObject
 
             if error == nil && data != nil {
 
-                do {
-                    let response = try! JSONDecoder().decode([Trainers].self, from: data! )
-                        DispatchQueue.main.async{
-                            self?.getShoe = response
-                        }
-
-                    print ("TEST", response)
-                    //let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:Any]
-
+                    let response = try! JSONDecoder().decode(Trainers.self, from: data!)
                     
-                    }}
-             
+                //self.completionHandler?(Trainers(response : response))
+                  
+                self!.completionHandler?(ShoeInfo(response: response))
+                    
+            }
             }
         
         dataTask.resume()
     }
+
+    
+
+}
+
+
+
+public struct Trainers: Decodable{
+    let results: [info]
+}
+public struct info: Decodable
+{
+    let brand: String
+    let name: String
+    let releaseYear: String
+    let retailPrice: Int
+    let estimatedMarketValue: Int
+    let story: String
 }

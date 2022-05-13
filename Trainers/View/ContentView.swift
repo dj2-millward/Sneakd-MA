@@ -5,20 +5,36 @@
 //  Created by Daniel Millward on 07/05/2022.
 //
 
+import Foundation
 import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var viewModel = API()
+    @ObservedObject var viewModel:ShoeViewModel
 
     var body: some View{
-        ForEach(viewModel.getShoe, id: \.self) { shoes in
-            Text(shoes.name!)
-        }
-        .onAppear{
-            viewModel.getShoe(shoeName: "Air Jordan 11 Retro 'Cherry'")
-        }
+        VStack {
+            Text(viewModel.name)
+                .padding()
+            Text(viewModel.brand)
+                .padding()
+            Text(viewModel.releaseYear)
+                .padding()
+            Text("\(Int(viewModel.retailPrice))")
+                .padding()
+            Text("\(Int(viewModel.estimatedMarketValue))")
+                .padding()
+            Text(viewModel.story)
+                .padding()
+        }.onAppear(perform: viewModel.refresh)
     }
+    
 }
+//   struct ContentView_Previews: PreviewProvider {
+//        static var previews: some View {
+//            ContentView(viewModel: ShoeViewModel(_APIService: API()))
+//        }
+//}
+
 
 

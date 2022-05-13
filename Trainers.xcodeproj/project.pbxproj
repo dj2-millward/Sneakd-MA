@@ -17,6 +17,7 @@
 		446B7E4C2826E89900B73CFC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B7E4B2826E89900B73CFC /* ContentView.swift */; };
 		446B7E502826E90300B73CFC /* Trainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B7E4F2826E90300B73CFC /* Trainers.swift */; };
 		446B7E522826EAD100B73CFC /* ShoeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B7E512826EAD100B73CFC /* ShoeViewModel.swift */; };
+		447A9A16282EA8D2006ACC43 /* ShoeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A9A15282EA8D2006ACC43 /* ShoeInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		446B7E4B2826E89900B73CFC /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		446B7E4F2826E90300B73CFC /* Trainers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trainers.swift; sourceTree = "<group>"; };
 		446B7E512826EAD100B73CFC /* ShoeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeViewModel.swift; sourceTree = "<group>"; };
+		447A9A15282EA8D2006ACC43 /* ShoeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				446B7E1B2826E7B100B73CFC /* TrainersApp.swift */,
 				446B7E4F2826E90300B73CFC /* Trainers.swift */,
+				447A9A15282EA8D2006ACC43 /* ShoeInfo.swift */,
 				446B7E4E2826E8B700B73CFC /* View */,
 				446B7E472826E82D00B73CFC /* API */,
 				446B7E1F2826E7B400B73CFC /* Assets.xcassets */,
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447A9A16282EA8D2006ACC43 /* ShoeInfo.swift in Sources */,
 				446B7E462826E7C800B73CFC /* API.swift in Sources */,
 				446B7E502826E90300B73CFC /* Trainers.swift in Sources */,
 				446B7E522826EAD100B73CFC /* ShoeViewModel.swift in Sources */,

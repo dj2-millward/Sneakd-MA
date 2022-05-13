@@ -11,8 +11,10 @@ import SwiftUI
 struct TrainersApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-           
+        let _APIService = API()
+        let viewModel = ShoeViewModel(_APIService: _APIService)
+            ContentView(viewModel: viewModel)
         }
+        
     }
 }
