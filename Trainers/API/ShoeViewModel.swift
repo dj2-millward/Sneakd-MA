@@ -17,6 +17,7 @@ class ShoeViewModel: ObservableObject {
     @Published var retailPrice: Int = 0
     @Published var estimatedMarketValue: Int = 0
     @Published var story: String = ""
+    @Published var image: String = ""
       
     public let _APIService: API
     
@@ -32,6 +33,7 @@ class ShoeViewModel: ObservableObject {
             self.retailPrice = shoe.retailPrice
             self.estimatedMarketValue = shoe.estimatedMarketValue
             self.story = shoe.story
+            self.image = shoe.image
            
         }}
     }

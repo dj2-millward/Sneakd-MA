@@ -26,6 +26,8 @@ struct ContentView: View {
                 .padding()
             Text(viewModel.story)
                 .padding()
+            AsyncImage(url: URL(string: viewModel.image))
+                .padding()
         }.onAppear(perform: viewModel.refresh)
     }
     
