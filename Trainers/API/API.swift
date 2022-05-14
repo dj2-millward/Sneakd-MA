@@ -24,7 +24,7 @@ public final class API : NSObject
     
         let headers = [
             "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
-            "X-RapidAPI-Key": "0ca96c3d12msh426f558cb45b490p196c7cjsna2bfd5d80839"
+            "X-RapidAPI-Key": "0769383bf0msh40d5b6bc7d9032ep1d81a7jsn04096886666c"
             ]
         
         
@@ -67,6 +67,7 @@ public final class API : NSObject
 
 
 public struct Trainers: Decodable{
+    
     let results: [info]
 }
 public struct info: Decodable

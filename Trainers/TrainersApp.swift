@@ -15,6 +15,5 @@ struct TrainersApp: App {
         let viewModel = ShoeViewModel(_APIService: _APIService)
             ContentView(viewModel: viewModel)
         }
-        
     }
 }
