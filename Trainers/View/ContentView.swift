@@ -14,20 +14,32 @@ struct ContentView: View {
 
     var body: some View{
         VStack {
+            AsyncImage(url: URL(string: viewModel.image), content: { image in
+                image.resizable()
+                     .aspectRatio(contentMode: .fit)
+                    // .frame(maxWidth: 500, maxHeight: 200)
+            },
+            placeholder: {
+                ProgressView()
+            })
+           
             Text(viewModel.name)
                 .padding()
             Text(viewModel.brand)
                 .padding()
             Text(viewModel.releaseYear)
                 .padding()
-            Text("£"+"\(Int(viewModel.retailPrice))")
-                .padding()
-            Text("~£"+"\(Int(viewModel.estimatedMarketValue))")
-                .padding()
+      
+            HStack{
+                Text("Retail Price: £"+"\(Int(viewModel.retailPrice))")
+                    .padding()
+                Text("Estimated Value: ~£"+"\(Int(viewModel.estimatedMarketValue))")
+                    .padding()
+            }
             Text(viewModel.story)
                 .padding()
-            AsyncImage(url: URL(string: viewModel.image))
-                .padding()
+          
+            
         }.onAppear(perform: viewModel.refresh)
     }
     

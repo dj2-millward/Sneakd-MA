@@ -26,6 +26,6 @@ public struct ShoeInfo
         self.retailPrice = response.results.first!.retailPrice
         self.estimatedMarketValue = response.results.first!.estimatedMarketValue
         self.story = response.results.first!.story
-        self.image = response.results.first!.image
+        self.image = response.results.first!.image.original
         }
 }

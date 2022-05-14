@@ -77,5 +77,10 @@ public struct info: Decodable
     let retailPrice: Int
     let estimatedMarketValue: Int
     let story: String
-    let image: String
+    let image: image
+}
+
+public struct image: Decodable
+{
+    let original: String
 }
