@@ -19,6 +19,7 @@
 		446B7E522826EAD100B73CFC /* ShoeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B7E512826EAD100B73CFC /* ShoeViewModel.swift */; };
 		447A9A16282EA8D2006ACC43 /* ShoeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A9A15282EA8D2006ACC43 /* ShoeInfo.swift */; };
 		44E6A144282FDC92003B51B8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E6A143282FDC92003B51B8 /* CardView.swift */; };
+		C7F90CBF28318EC500A59538 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F90CBE28318EC500A59538 /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		446B7E512826EAD100B73CFC /* ShoeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeViewModel.swift; sourceTree = "<group>"; };
 		447A9A15282EA8D2006ACC43 /* ShoeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeInfo.swift; sourceTree = "<group>"; };
 		44E6A143282FDC92003B51B8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		C7F90CBE28318EC500A59538 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				446B7E4B2826E89900B73CFC /* ContentView.swift */,
+				C7F90CBE28318EC500A59538 /* SwiftUIView.swift */,
 				44E6A143282FDC92003B51B8 /* CardView.swift */,
 			);
 			path = View;
@@ -290,6 +293,7 @@
 			files = (
 				44E6A144282FDC92003B51B8 /* CardView.swift in Sources */,
 				447A9A16282EA8D2006ACC43 /* ShoeInfo.swift in Sources */,
+				C7F90CBF28318EC500A59538 /* SwiftUIView.swift in Sources */,
 				446B7E462826E7C800B73CFC /* API.swift in Sources */,
 				446B7E502826E90300B73CFC /* Trainers.swift in Sources */,
 				446B7E522826EAD100B73CFC /* ShoeViewModel.swift in Sources */,

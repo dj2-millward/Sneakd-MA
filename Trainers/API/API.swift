@@ -24,7 +24,7 @@ public final class API : NSObject
     
         let headers = [
             "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
-            "X-RapidAPI-Key": "a0aad0a9fbmsha0bd8cd04b9b778p1a5d24jsnb64d0144111c"
+            "X-RapidAPI-Key": "21b6e3c27cmsh796554841cb5f67p1cb915jsn31cfef317e9e"
             ]
         
         
@@ -48,7 +48,7 @@ public final class API : NSObject
 
             if error == nil && data != nil {
 
-                    let response = try! JSONDecoder().decode(Trainers.self, from: data!)
+                    let response = try! JSONDecoder().decode(Trainers.self, from: data!) 
                     
                 //self.completionHandler?(Trainers(response : response))
                   

@@ -13,9 +13,7 @@ struct CardView : View {
     @State private var offset = CGSize.zero
     @State private var colour: Color = .gray
     @Binding var viewModel:ShoeViewModel
-    
-    @State private var count: Int = 0
-    
+    @Binding var count: Int
     
     @State private var expandedView = false
     
@@ -30,7 +28,6 @@ struct CardView : View {
 //                Text("Search")
 //            }
 //        }
-            
             ZStack{
                 
             Rectangle()
@@ -48,11 +45,7 @@ struct CardView : View {
                 expandView(viewModel: $viewModel)
                 
             })
-            
-           
-            
-            
-               
+
             
             VStack{
                 
@@ -106,7 +99,7 @@ struct CardView : View {
             }.onTapGesture {
                 expandedView.toggle()
             }
-            .onAppear{print(viewModel.image)}
+            
         }.onAppear(perform: viewModel.refresh)
         
             .offset(x: offset.width, y: offset.height * 0.4)
@@ -121,7 +114,6 @@ struct CardView : View {
                         .onEnded { _ in
                 withAnimation {
                     swipeCard(width: offset.width)
-                    
                     changeColor(width: offset.width)
                 }
             }
@@ -135,14 +127,17 @@ struct CardView : View {
     func swipeCard(width: CGFloat){
         switch width {
         case -500...(-150):
+            offset = CGSize(width: -500, height: 0)
+            arrayTest()
             print("\(shoe) removed")
             // print(viewModel.shoeImages[shoeCount])
-            arrayTest()
-            offset = CGSize(width: -500, height: 0)
+           
+            
         case 150...500:
             offset = CGSize(width: 500, height: 0)
-            print("\(shoe) added")
             arrayTest()
+            print("\(shoe) added")
+           
         default:
             offset = .zero
         }
@@ -164,8 +159,10 @@ struct CardView : View {
      }
         
         func arrayTest() {
-            print("Test: ", viewModel.shoeInfo[count].name)
+           // print("Test: ", viewModel.shoeInfo[count].name)
+           print("Test: ", viewModel.shoeInfo[count].name)
             count += 1
+           print("COunt is ",count)
             }
     
     
@@ -224,11 +221,12 @@ struct CardView : View {
                         .padding()
                     
                 }
-            }
+            }.onAppear(perform: viewModel.refresh)
             
         }
     }
 }
+
 
 
 
