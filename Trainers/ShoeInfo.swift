@@ -23,8 +23,7 @@ public struct ShoeInfo
     
     
     init(response: Trainers) {
-        
-       
+               
         self.name = response.results.first!.name
         results.append(self.name)
         

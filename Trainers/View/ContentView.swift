@@ -11,29 +11,42 @@ import SwiftUI
 
 struct ContentView: View
 {
-       
+    
     @State var viewModel:ShoeViewModel
- 
+    
     var results: [String] = []
     
-    //@State private var shoe: [String] = ["Jordan", "Nike", "Adidas", "Fila"].reversed()
     
-   // private var shoe: [String] = viewModel.shoeImages.reversed()
     
-       var body: some View {
-           VStack {
-               ZStack{
-                   ForEach(shoe, id: \.self) { _shoe in
-                       CardView(shoe: _shoe, viewModel: $viewModel)
-                   }
-               }
-           }.onAppear(perform: viewModel.refresh)
-       }
+    
+    @State private var shoe: [String] = ["Jordan", "Nike", "Adidas", "Fila"].reversed()
+    
+    
+    // private var shoe: [String] = viewModel.shoeImages.reversed()
+    
+    func recieveData(_ completion: () -> ())
+    {
+        var shoe: [String] = viewModel.shoeImages
+        completion()
+        
+    }
+    
+    var body: some View {
+        VStack {
+            ZStack{
+                ForEach(shoe, id: \.self) { _shoe in
+                    CardView(shoe: _shoe, viewModel: $viewModel)
+                }
+            }
+        }.onAppear(perform: viewModel.refresh)
+    }
+    
+    
+    
+    
+    
+    
 }
-        
-        
-
-    
 
 
 
