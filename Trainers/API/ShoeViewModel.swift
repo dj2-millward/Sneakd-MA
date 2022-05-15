@@ -20,6 +20,8 @@ class ShoeViewModel: ObservableObject {
     @Published var image: String = ""
     
     @Published var shoeImages: [String] = []
+    @Published var shoeInfo: [info] = []
+
       
     public let _APIService: API
     
@@ -37,10 +39,13 @@ class ShoeViewModel: ObservableObject {
             self.story = shoe.story
             self.image = shoe.image
             
-            
+            print("Image updated")
             self.shoeImages = shoe.shoesImages
+            self.shoeInfo = shoe.shoeInfo
+            print("Shoe info updated")
+
             
-            print("Shoe image array count: ", self.shoeImages.count)
+            print("Shoe info array count: ", self.shoeInfo.count)
            
         }}
     }

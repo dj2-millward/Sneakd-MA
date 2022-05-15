@@ -13,7 +13,8 @@ struct CardView : View {
     @State private var offset = CGSize.zero
     @State private var colour: Color = .gray
     @Binding var viewModel:ShoeViewModel
-    @State private var shoeCount: Int = 0
+    
+    @State private var count: Int = 0
     
     
     @State private var expandedView = false
@@ -22,11 +23,18 @@ struct CardView : View {
     
     
     var body: some View{
-        ZStack {
+       
+//        ZStack{
+//            NavigationView
+//            {
+//                Text("Search")
+//            }
+//        }
             
+            ZStack{
+                
             Rectangle()
                 .frame(height: 420)
-                
                 .border(.white, width: 3.0)
                 .cornerRadius(8)
                 .foregroundColor(colour.opacity(0.9))
@@ -40,21 +48,28 @@ struct CardView : View {
                 expandView(viewModel: $viewModel)
                 
             })
-            Spacer()
+            
            
             
             
-            
+               
             
             VStack{
                 
-                AsyncImage(url: URL(string: viewModel.image), content: { image in
+                AsyncImage(url: URL(string:  viewModel.image)
+                //AsyncImage(url: URL(string: viewModel.shoeInfo[0].image.original)
+                           , content: { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 500, maxHeight: 300)
+                        .onTapGesture {
+                            expandedView.toggle()
+                        }
+                    
                 },
                            placeholder: {
                     ProgressView()
+                    
                 })
                 
                 HStack{
@@ -67,6 +82,8 @@ struct CardView : View {
                         .font(.title)
                         .foregroundColor(.white)
                         .bold()
+                }.onTapGesture {
+                    expandedView.toggle()
                 }
                 Text(viewModel.name)
                     .font(.largeTitle)
@@ -75,7 +92,19 @@ struct CardView : View {
                     .multilineTextAlignment(.center)
                   
                     .padding()
-                Spacer()
+                /////Testing
+                Button(action: {
+                        arrayTest()
+                }, label: {
+                        Text("BUTTON")
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .font(.largeTitle)
+                            .padding(20)
+                    })
+              //  Spacer()
+            }.onTapGesture {
+                expandedView.toggle()
             }
             .onAppear{print(viewModel.image)}
         }.onAppear(perform: viewModel.refresh)
@@ -92,6 +121,7 @@ struct CardView : View {
                         .onEnded { _ in
                 withAnimation {
                     swipeCard(width: offset.width)
+                    
                     changeColor(width: offset.width)
                 }
             }
@@ -101,25 +131,28 @@ struct CardView : View {
           
     }
     
+    
     func swipeCard(width: CGFloat){
         switch width {
         case -500...(-150):
             print("\(shoe) removed")
             // print(viewModel.shoeImages[shoeCount])
-            
+            arrayTest()
             offset = CGSize(width: -500, height: 0)
         case 150...500:
             offset = CGSize(width: 500, height: 0)
             print("\(shoe) added")
+            arrayTest()
         default:
             offset = .zero
         }
         
-        shoeCount += 1
+        
+        //shoeCount += 1
     }
     
     
-    func changeColor(width: CGFloat) {
+     func changeColor(width: CGFloat) {
         switch width {
         case -500...(-130):
             colour = .red
@@ -128,7 +161,14 @@ struct CardView : View {
         default:
             colour = .black
         }
-    }
+     }
+        
+        func arrayTest() {
+            print("Test: ", viewModel.shoeInfo[count].name)
+            count += 1
+            }
+    
+    
     
     struct expandView : View
     {

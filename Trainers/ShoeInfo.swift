@@ -20,6 +20,8 @@ public struct ShoeInfo
     var shoesImages: [String] = []
     var shoeID : [[String]] = [[]]
     var results: [String] = []
+    var shoeInfo: [info] = []
+    
     
     
     init(response: Trainers) {
@@ -46,6 +48,17 @@ public struct ShoeInfo
         results.append(self.image)
         
         shoeID.append(results)
+        
+        
+        
+        for index in 0...response.results.count-1
+        {
+            self.shoeInfo.append (response.results[index])
+            print ("SHOE INFO " ,self.shoeInfo[index])
+        }
+    
+        
+       
         
 //        for index in 0...response.ShoeID.first!.results.count-1
 //               {
