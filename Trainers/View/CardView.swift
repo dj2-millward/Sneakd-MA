@@ -21,108 +21,111 @@ struct CardView : View {
     
     
     var body: some View{
-       
-//        ZStack{
-//            NavigationView
-//            {
-//                Text("Search")
-//            }
-//        }
+        HStack{
             ZStack{
                 
-            Rectangle()
-                .frame(height: 420)
-                .border(.white, width: 3.0)
-                .cornerRadius(8)
-                .foregroundColor(colour.opacity(0.9))
-                .shadow(radius: 4)
-                .onTapGesture {
-                    expandedView.toggle()
-                }
-            
-        
-            .sheet(isPresented: $expandedView, content: {
-                expandView(viewModel: $viewModel)
+                Rectangle()
+                    .frame(height: 500)
+                    //.border(.white, width: 3.0)
+                    .cornerRadius(20)
+                    .foregroundColor(colour.opacity(0.9))
+                    .shadow(radius: 2)
+                    .onTapGesture {
+                        expandedView.toggle()
+                    }
                 
-            })
-
-            
-            VStack{
-                
-                AsyncImage(url: URL(string:  viewModel.image)
-                //AsyncImage(url: URL(string: viewModel.shoeInfo[0].image.original)
-                           , content: { image in
-                    image.resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: 500, maxHeight: 300)
-                        .onTapGesture {
-                            expandedView.toggle()
-                        }
-                    
-                },
-                           placeholder: {
-                    ProgressView()
-                    
-                })
-                
-                HStack{
-                    Text(viewModel.brand)
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .bold()
-                    
-                    Text(viewModel.releaseYear)
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .bold()
-                }.onTapGesture {
-                    expandedView.toggle()
-                }
-                Text(viewModel.name)
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
-                    .bold()
-                    .multilineTextAlignment(.center)
-                  
-                    .padding()
-                /////Testing
-                Button(action: {
-                        arrayTest()
-                }, label: {
-                        Text("BUTTON")
-                            .foregroundColor(.white)
-                            .background(.blue)
-                            .font(.largeTitle)
-                            .padding(20)
+                    .sheet(isPresented: $expandedView, content: {
+                        expandView(viewModel: $viewModel)
+                        
                     })
-              //  Spacer()
-            }.onTapGesture {
-                expandedView.toggle()
-            }
+                
+                
+                VStack{
+                    
+                    AsyncImage(url: URL(string:  viewModel.image)
+                               //AsyncImage(url: URL(string: viewModel.shoeInfo[0].image.original)
+                               , content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame( maxHeight: 250)
+                            //.border(.gray, width: 3)
+                            .onTapGesture {
+                                expandedView.toggle()
+                            }
+                        
+                    },
+                               placeholder: {
+                        ProgressView()
+                        
+                    })
+                    VStack{
+                    HStack{
+                        Text(viewModel.brand)
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .bold()
+                        
+                        Text(viewModel.releaseYear)
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .bold()
+                    }.onTapGesture {
+                        expandedView.toggle()
+                    }
+                    Text(viewModel.name)
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                        .bold()
+                        .multilineTextAlignment(.center)
+                    
+                    }
+                   
+                    HStack
+                    {
+                        Button {
+                            //next card
+                        } label: {
+                            Image(systemName: "trash.fill")
+                        }
+                        .buttonStyle(GrowingButton())
+                        
+                        Button {
+                            //next card
+                        } label: {
+                            Image(systemName: "arrow.up.heart.fill")
+                        }
+                        .buttonStyle(GrowingButton())
+                    }.aspectRatio(contentMode: .fit)
+                    //  Spacer()
+                }
+                
+                
+                
+                
+                
+            }.onAppear(perform: viewModel.refresh)
             
-        }.onAppear(perform: viewModel.refresh)
-        
-            .offset(x: offset.width, y: offset.height * 0.4)
-            .rotationEffect(.degrees(Double(offset.width / 40)))
-            .gesture(DragGesture()
-                        .onChanged { gesture in
-                offset = gesture.translation
-                withAnimation {
-                    changeColor(width: offset.width)
+                .offset(x: offset.width, y: offset.height * 0.4)
+                .rotationEffect(.degrees(Double(offset.width / 40)))
+                .gesture(DragGesture()
+                            .onChanged { gesture in
+                    offset = gesture.translation
+                    withAnimation {
+                        changeColor(width: offset.width)
+                    }
                 }
-            }
-                        .onEnded { _ in
-                withAnimation {
-                    swipeCard(width: offset.width)
-                    changeColor(width: offset.width)
+                            .onEnded { _ in
+                    withAnimation {
+                        swipeCard(width: offset.width)
+                        changeColor(width: offset.width)
+                    }
                 }
-            }
-            )
-        
-          
-          
+                )
+            
+            
+            
+        }
     }
-    
     
     func swipeCard(width: CGFloat){
         switch width {
@@ -131,13 +134,13 @@ struct CardView : View {
             arrayTest()
             print("\(shoe) removed")
             // print(viewModel.shoeImages[shoeCount])
-           
+            
             
         case 150...500:
             offset = CGSize(width: 500, height: 0)
             arrayTest()
             print("\(shoe) added")
-           
+            
         default:
             offset = .zero
         }
@@ -147,7 +150,7 @@ struct CardView : View {
     }
     
     
-     func changeColor(width: CGFloat) {
+    func changeColor(width: CGFloat) {
         switch width {
         case -500...(-130):
             colour = .red
@@ -156,16 +159,26 @@ struct CardView : View {
         default:
             colour = .black
         }
-     }
-        
-        func arrayTest() {
-           // print("Test: ", viewModel.shoeInfo[count].name)
-           print("Test: ", viewModel.shoeInfo[count].name)
-            count += 1
-           print("COunt is ",count)
-            }
+    }
     
+    func arrayTest() {
+        // print("Test: ", viewModel.shoeInfo[count].name)
+        print("Test: ", viewModel.shoeInfo[count].name)
+        count += 1
+        print("COunt is ",count)
+    }
     
+    struct GrowingButton: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .padding()
+                .background(.yellow)
+                .foregroundColor(.white)
+                .clipShape(Circle())
+                .scaleEffect(configuration.isPressed ? 1.2 : 1)
+                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+        }
+    }
     
     struct expandView : View
     {
@@ -174,17 +187,17 @@ struct CardView : View {
         var body: some View {
             ZStack(alignment: .topLeading){
                 
-                Color.red
+                Color.yellow
                     .edgesIgnoringSafeArea(.all)
                 
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
-                            .font(.largeTitle)
-                            .padding(20)
-                    })
+                    Image(systemName: "xmark")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                        .padding(20)
+                })
                 
                 
                 VStack{
@@ -231,5 +244,5 @@ struct CardView : View {
 
 
 
-        
-       
+
+

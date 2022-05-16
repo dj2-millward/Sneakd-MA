@@ -54,6 +54,7 @@
 		446B7E4F2826E90300B73CFC /* Trainers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trainers.swift; sourceTree = "<group>"; };
 		446B7E512826EAD100B73CFC /* ShoeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeViewModel.swift; sourceTree = "<group>"; };
 		447A9A15282EA8D2006ACC43 /* ShoeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeInfo.swift; sourceTree = "<group>"; };
+		44B5EABE2832CA0B00A0A8BD /* adidas */ = {isa = PBXFileReference; lastKnownFileType = file; path = adidas; sourceTree = "<group>"; };
 		44E6A143282FDC92003B51B8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C7F90CBE28318EC500A59538 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +113,7 @@
 				446B7E4E2826E8B700B73CFC /* View */,
 				446B7E472826E82D00B73CFC /* API */,
 				446B7E1F2826E7B400B73CFC /* Assets.xcassets */,
+				44B5EABE2832CA0B00A0A8BD /* adidas */,
 				446B7E212826E7B400B73CFC /* Preview Content */,
 			);
 			path = Trainers;

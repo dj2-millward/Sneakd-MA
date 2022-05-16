@@ -9,7 +9,14 @@ import SwiftUI
 
 struct SwiftUIView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+          HStack(){
+            
+            Image("adidas")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 30, height: 30, alignment: .center)
+        }
+      
     }
 }
 

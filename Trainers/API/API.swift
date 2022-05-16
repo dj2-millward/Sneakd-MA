@@ -24,7 +24,7 @@ public final class API : NSObject
     
         let headers = [
             "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
-            "X-RapidAPI-Key": "21b6e3c27cmsh796554841cb5f67p1cb915jsn31cfef317e9e"
+            "X-RapidAPI-Key": "d8c54a0f73mshd98cf9279d865dcp19e429jsnb19a18318607"
             ]
         
         
@@ -34,6 +34,7 @@ public final class API : NSObject
             print ("Error creating URL object")
 
             return
+           
 
         }
         //URL Request
