@@ -12,6 +12,7 @@ struct CardView : View {
     var shoe: String
     @State private var offset = CGSize.zero
     @State private var colour: Color = .gray
+   
     @Binding var viewModel:ShoeViewModel
     @Binding var count: Int
     
@@ -84,17 +85,32 @@ struct CardView : View {
                     {
                         Button {
                             //next card
+                            
+                            offset = CGSize(width: -150, height: 0)
+                            withAnimation {
+                                swipeCard(width: offset.width)
+                                changeColor(width: offset.width)
+                            }
                         } label: {
                             Image(systemName: "trash.fill")
                         }
                         .buttonStyle(GrowingButton())
+                        .font(.title)
                         
+                        Spacer().frame(width: 150)
                         Button {
                             //next card
+                            offset = CGSize(width: 150, height: 0)
+                            withAnimation {
+                                swipeCard(width: offset.width)
+                                changeColor(width: offset.width)
+                            }
                         } label: {
-                            Image(systemName: "arrow.up.heart.fill")
+                            Image(systemName: "heart.fill")
                         }
+                        .font(.title)
                         .buttonStyle(GrowingButton())
+                        
                     }.aspectRatio(contentMode: .fit)
                     //  Spacer()
                 }
@@ -155,7 +171,7 @@ struct CardView : View {
         case -500...(-130):
             colour = .red
         case 130...500:
-            colour = .yellow
+            colour = .green
         default:
             colour = .black
         }

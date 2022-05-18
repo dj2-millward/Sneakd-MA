@@ -24,7 +24,7 @@ public final class API : NSObject
     
         let headers = [
             "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
-            "X-RapidAPI-Key": "d8c54a0f73mshd98cf9279d865dcp19e429jsnb19a18318607"
+            "X-RapidAPI-Key": "9efd3b9e17msh150ae2c403836c3p14005fjsn624be3f5af13"
             ]
         
         
