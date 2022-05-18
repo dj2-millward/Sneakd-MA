@@ -24,7 +24,7 @@ public final class API : NSObject
     
         let headers = [
             "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
-            "X-RapidAPI-Key": "9efd3b9e17msh150ae2c403836c3p14005fjsn624be3f5af13"
+            "X-RapidAPI-Key": "9a72246a83mshaeeb97c50168ee8p1a64aajsn50dafce302ad"
             ]
         
         
@@ -47,7 +47,7 @@ public final class API : NSObject
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
 
-            if error == nil && data != nil {
+           if error == nil && data != nil {
 
                     let response = try! JSONDecoder().decode(Trainers.self, from: data!) 
                     
@@ -55,7 +55,7 @@ public final class API : NSObject
                   
                 self!.completionHandler?(ShoeInfo(response: response))
                     
-            }
+          }
             }
         
         dataTask.resume()
@@ -80,9 +80,17 @@ public struct info: Decodable
     let estimatedMarketValue: Int
     let story: String
     let image: image
+    let links: links
 }
 
 public struct image: Decodable
 {
     let original: String
 }
+
+public struct links: Decodable
+{
+    let goat: String
+   
+}
+

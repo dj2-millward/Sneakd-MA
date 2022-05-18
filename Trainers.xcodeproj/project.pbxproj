@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4429BA4028355A330082738E /* ExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4429BA3F28355A330082738E /* ExpandedView.swift */; };
 		446B7E1C2826E7B100B73CFC /* TrainersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B7E1B2826E7B100B73CFC /* TrainersApp.swift */; };
 		446B7E202826E7B400B73CFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 446B7E1F2826E7B400B73CFC /* Assets.xcassets */; };
 		446B7E232826E7B400B73CFC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 446B7E222826E7B400B73CFC /* Preview Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4429BA3F28355A330082738E /* ExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedView.swift; sourceTree = "<group>"; };
 		446B7E182826E7B100B73CFC /* Trainers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trainers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		446B7E1B2826E7B100B73CFC /* TrainersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainersApp.swift; sourceTree = "<group>"; };
 		446B7E1F2826E7B400B73CFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				446B7E4B2826E89900B73CFC /* ContentView.swift */,
 				C7F90CBE28318EC500A59538 /* SwiftUIView.swift */,
 				44E6A143282FDC92003B51B8 /* CardView.swift */,
+				4429BA3F28355A330082738E /* ExpandedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				C7F90CBF28318EC500A59538 /* SwiftUIView.swift in Sources */,
 				446B7E462826E7C800B73CFC /* API.swift in Sources */,
 				446B7E502826E90300B73CFC /* Trainers.swift in Sources */,
+				4429BA4028355A330082738E /* ExpandedView.swift in Sources */,
 				446B7E522826EAD100B73CFC /* ShoeViewModel.swift in Sources */,
 				446B7E1C2826E7B100B73CFC /* TrainersApp.swift in Sources */,
 				446B7E4C2826E89900B73CFC /* ContentView.swift in Sources */,

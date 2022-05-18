@@ -17,6 +17,7 @@ public struct ShoeInfo
     let estimatedMarketValue: Int
     let story: String
     let image: String
+    let links: String
     var shoesImages: [String] = []
     var shoeID : [[String]] = [[]]
     var results: [String] = []
@@ -46,6 +47,9 @@ public struct ShoeInfo
         
         self.image = response.results.first!.image.original
         results.append(self.image)
+        
+        self.links = response.results.first!.links.goat
+        results.append(self.links)
         
         shoeID.append(results)
         

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CardView : View {
     var shoe: String
-    @State private var offset = CGSize.zero
+    @State public var offset = CGSize.zero
     @State private var colour: Color = .gray
    
     @Binding var viewModel:ShoeViewModel
@@ -65,7 +65,9 @@ struct CardView : View {
                             .font(.title)
                             .foregroundColor(.white)
                             .bold()
-                        
+                        Image(systemName: "poweron")
+                            .font(.title)
+                            .foregroundColor(.white)
                         Text(viewModel.releaseYear)
                             .font(.title)
                             .foregroundColor(.white)
@@ -73,7 +75,7 @@ struct CardView : View {
                     }.onTapGesture {
                         expandedView.toggle()
                     }
-                    Text(viewModel.name)
+                        Text(viewModel.name)
                         .font(.largeTitle)
                         .foregroundColor(.white)
                         .bold()
@@ -86,11 +88,7 @@ struct CardView : View {
                         Button {
                             //next card
                             
-                            offset = CGSize(width: -150, height: 0)
-                            withAnimation {
-                                swipeCard(width: offset.width)
-                                changeColor(width: offset.width)
-                            }
+                         
                         } label: {
                             Image(systemName: "trash.fill")
                         }
@@ -100,11 +98,7 @@ struct CardView : View {
                         Spacer().frame(width: 150)
                         Button {
                             //next card
-                            offset = CGSize(width: 150, height: 0)
-                            withAnimation {
-                                swipeCard(width: offset.width)
-                                changeColor(width: offset.width)
-                            }
+                         
                         } label: {
                             Image(systemName: "heart.fill")
                         }
@@ -143,6 +137,34 @@ struct CardView : View {
         }
     }
     
+
+    
+    func arrayTest() {
+        // print("Test: ", viewModel.shoeInfo[count].name)
+        print("Test: ", viewModel.shoeInfo[count].name)
+        count += 1
+        print("COunt is ",count)
+    }
+    
+    struct GrowingButton: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .padding()
+                .background(.yellow)
+                .foregroundColor(.white)
+                .clipShape(Circle())
+                .scaleEffect(configuration.isPressed ? 1.2 : 1)
+                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+        }
+    }
+    
+    struct expandView : View
+    {
+        @Binding var viewModel:ShoeViewModel
+        var body: some View{
+        ExpandedView(viewModel: $viewModel)
+        }
+    }
     func swipeCard(width: CGFloat){
         switch width {
         case -500...(-150):
@@ -174,84 +196,6 @@ struct CardView : View {
             colour = .green
         default:
             colour = .black
-        }
-    }
-    
-    func arrayTest() {
-        // print("Test: ", viewModel.shoeInfo[count].name)
-        print("Test: ", viewModel.shoeInfo[count].name)
-        count += 1
-        print("COunt is ",count)
-    }
-    
-    struct GrowingButton: ButtonStyle {
-        func makeBody(configuration: Configuration) -> some View {
-            configuration.label
-                .padding()
-                .background(.yellow)
-                .foregroundColor(.white)
-                .clipShape(Circle())
-                .scaleEffect(configuration.isPressed ? 1.2 : 1)
-                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-        }
-    }
-    
-    struct expandView : View
-    {
-        @Binding var viewModel:ShoeViewModel
-        @Environment(\.presentationMode) var presentationMode
-        var body: some View {
-            ZStack(alignment: .topLeading){
-                
-                Color.yellow
-                    .edgesIgnoringSafeArea(.all)
-                
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Image(systemName: "xmark")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                        .padding(20)
-                })
-                
-                
-                VStack{
-                    
-                    AsyncImage(url: URL(string: viewModel.image), content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 500, maxHeight: 200)
-                    },
-                               placeholder: {
-                        ProgressView()
-                    })
-                    
-                    HStack{
-                        Text(viewModel.brand)
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .bold()
-                        
-                        Text(viewModel.releaseYear)
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .bold()
-                    }
-                    Text(viewModel.name)
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
-                        .bold()
-                        .padding()
-                    Text(viewModel.story)
-                        .font(.body)
-                        .foregroundColor(.white)
-                        .bold()
-                        .padding()
-                    
-                }
-            }.onAppear(perform: viewModel.refresh)
-            
         }
     }
 }

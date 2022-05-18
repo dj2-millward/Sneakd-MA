@@ -18,6 +18,7 @@ class ShoeViewModel: ObservableObject {
     @Published var estimatedMarketValue: Int = 0
     @Published var story: String = ""
     @Published var image: String = ""
+    @Published var links: String = ""
     
     @Published var shoeImages: [String] = []
     @Published var shoeInfo: [info] = []
@@ -30,7 +31,7 @@ class ShoeViewModel: ObservableObject {
     }
     
     public func refresh() {
-        _APIService.searchShoe(Search: "Jordan%201%20Mid%20Signal%20Blue") { shoe in DispatchQueue.main.async {
+        _APIService.searchShoe(Search: "Jordan%201%20Retro%20BHM%20(2015)%20(GS)") { shoe in DispatchQueue.main.async {
             self.name = shoe.name
             self.brand = shoe.brand
             self.releaseYear = shoe.releaseYear
@@ -38,7 +39,7 @@ class ShoeViewModel: ObservableObject {
             self.estimatedMarketValue = shoe.estimatedMarketValue
             self.story = shoe.story
             self.image = shoe.image
-            
+            self.links = shoe.links
             print("Image updated")
             self.shoeImages = shoe.shoesImages
             self.shoeInfo = shoe.shoeInfo

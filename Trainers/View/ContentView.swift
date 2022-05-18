@@ -16,14 +16,14 @@ struct ContentView: View
     @State private var count: Int = 0
     @State var selected = 0
     var results: [String] = []
+    //var shoe: [String] = []
     
     @State private var shoe: [String] = ["Jordan", "Nike", "Adidas", "Fila"].reversed()
+    
     @State private var searchText = ""
     // private var shoe: [String] = viewModel.shoeImages.reversed()
     
     var body: some View {
-        
-        
         
         VStack{
             VStack(spacing: 4){
@@ -50,7 +50,7 @@ struct ContentView: View
             }
             
             VStack {
-                ZStack{
+                ZStack(alignment: .topLeading){
                     ForEach(shoe, id: \.self) { _shoe in
                         CardView(shoe: _shoe, viewModel: $viewModel, count: $count)
                     }
@@ -61,7 +61,6 @@ struct ContentView: View
             
             Spacer()
             
-        
             
         }
         .padding(.top, 5)
@@ -79,7 +78,7 @@ struct ContentView: View
         VStack{
             Spacer()
             
-            ZStack (alignment: .top){
+            ZStack{
                 BotttomBar(selected: self.$selected)
                     .padding()
                     .padding(.horizontal, 22)
@@ -152,7 +151,7 @@ struct BotttomBar : View {
             Button(action:{
                 self.selected = 3
             }){
-                Image(systemName: "trash.fill")
+                Image(systemName: "gearshape.fill")
             }.foregroundColor(self.selected == 3 ? .yellow: .gray)
             //Spacer().frame(width: 120)
         
