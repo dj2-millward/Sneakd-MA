@@ -23,7 +23,8 @@ struct CardView : View {
     
     var body: some View{
         HStack{
-            ZStack{
+            ZStack(alignment: .top){
+               
                 
                 Rectangle()
                     .frame(height: 500)
@@ -40,7 +41,7 @@ struct CardView : View {
                         
                     })
                 
-                
+                    .edgesIgnoringSafeArea(.all)
                 VStack{
                     
                     AsyncImage(url: URL(string:  viewModel.image)

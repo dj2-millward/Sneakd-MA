@@ -57,7 +57,7 @@ struct ExpandedView: View {
                 
                 Text(viewModel.name)
                     .font(.largeTitle)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .bold()
                 
                 
@@ -66,65 +66,82 @@ struct ExpandedView: View {
                     HStack{
                         HStack{
                             Image(systemName: "sterlingsign.circle")
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .font(.title2)
                             
-                            Text("Retail-£" + "\(Int(viewModel.retailPrice))")
+                            if(viewModel.retailPrice != 0)                               {
+                            Text("Retail- £" + "\(Int(viewModel.retailPrice))")
                                 .font(.title2)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
+                                
                             
                             
+                            }else{
+                                Text("Retail- £" + "N/A")
+                                    .font(.title2)
+                                    .foregroundColor(.black)
+                            }
                         }
                         Image(systemName: "poweron")
                             .font(.title2)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                         HStack{
                             
                             Image(systemName: "sterlingsign.circle.fill")
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .font(.title2)
-                            Text("Est.-£" + "\(Int(viewModel.estimatedMarketValue))")
+                            
+                            if(viewModel.estimatedMarketValue != 0){
+                            Text("Est.~ £" + "\(Int(viewModel.estimatedMarketValue))")
                                 .font(.title2)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                             
-                            
+                            }else{
+                                Text("Est~ £" + "N/A")
+                                    .font(.title2)
+                                    .foregroundColor(.black)
+                            }
                         }
                     }
                     
                 }
-                
+                ScrollView{
                 Text(viewModel.story)
                     .font(.body)
                     .foregroundColor(.white)
                     .bold()
+                    .multilineTextAlignment(.center)
                     .padding()
-                
+                }
                 Spacer()
                 
                 HStack{
-                    VStack{
+                    HStack(){
                         Button(action: {
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Image(systemName: "trash.fill")
                                 .foregroundColor(.white)
                                 .font(.title)
+                                .padding()
+                                .offset(x: -15)
                                 .buttonStyle(CardView.GrowingButton())
                         })
                         
-                        
-                        
+                            
+                        if(!viewModel.links.isEmpty){
                         Link(destination: URL(string: viewModel.links)!) {
                             
                             Image(systemName: "cart.fill").renderingMode(.original).padding(18)
-                                .buttonStyle(CardView.GrowingButton())
+                                .foregroundColor(.white)
                                 .background(.black)
+                                .font(.title)
                                 .clipShape(Circle())
-                                .offset(y: -25)
-                                .foregroundColor(.yellow)
-                                .shadow(radius: 3)
+                                .padding()
+                                .offset(y: -35)                        .buttonStyle(CardView.GrowingButton())
+
                             
-                            
+                        }
                         }
                         
                         Button(action: {
@@ -135,6 +152,7 @@ struct ExpandedView: View {
                                 .foregroundColor(.white)
                                 .font(.title)
                                 .padding()
+                                .offset(x: 15)
                                 .buttonStyle(CardView.GrowingButton())
                         })
                         
@@ -151,6 +169,16 @@ struct ExpandedView: View {
             }
         }.onAppear(perform: viewModel.refresh)
         
+    }
+    
+    func isObjectNotNil(object:AnyObject!) -> Bool
+    {
+        if let _:AnyObject = object
+        {
+            return true
+        }
+
+        return false
     }
 }
 

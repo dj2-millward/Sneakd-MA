@@ -50,7 +50,7 @@ struct ContentView: View
             }
             
             VStack {
-                ZStack(alignment: .topLeading){
+                ZStack(alignment: .top){
                     ForEach(shoe, id: \.self) { _shoe in
                         CardView(shoe: _shoe, viewModel: $viewModel, count: $count)
                     }
@@ -78,7 +78,7 @@ struct ContentView: View
         VStack{
             Spacer()
             
-            ZStack{
+            ZStack(alignment: .bottom){
                 BotttomBar(selected: self.$selected)
                     .padding()
                     .padding(.horizontal, 22)
@@ -87,7 +87,7 @@ struct ContentView: View
             
             Button(action:{
             }) {
-                Image(systemName: "crown.fill").renderingMode(.original).padding(18)
+                Image(systemName: "crown.fill").renderingMode(.original).padding(16)
             }.background(.yellow)
             .clipShape(Circle())
             .offset(y: -35)
@@ -95,7 +95,7 @@ struct ContentView: View
             .shadow(radius: 3)
            // CurvedShape()
         }
-    }.background(.white)
+        }.background(.white).edgesIgnoringSafeArea(.top)
     }
                        
         
@@ -118,6 +118,7 @@ struct CurvedShape : View {
                 .rotationEffect(.init(degrees: 180))
                 .padding(.bottom, -40)
                 .frame(maxHeight: .infinity, alignment: .bottom)
+                
                 
 
     }
@@ -153,6 +154,9 @@ struct BotttomBar : View {
             }){
                 Image(systemName: "gearshape.fill")
             }.foregroundColor(self.selected == 3 ? .yellow: .gray)
+                .onTapGesture {
+                //    Settings(viewModel: $viewModel)
+                }
             //Spacer().frame(width: 120)
         
         }
