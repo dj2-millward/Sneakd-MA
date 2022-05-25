@@ -69,17 +69,31 @@ struct CardView : View {
                         Image(systemName: "poweron")
                             .font(.title)
                             .foregroundColor(.white)
+                        
+                        if (viewModel.releaseYear != ""){
                         Text(viewModel.releaseYear)
                             .font(.title)
                             .foregroundColor(.white)
                             .bold()
-                    }.onTapGesture {
+                    .onTapGesture {
                         expandedView.toggle()
+                    }
+                        }else{
+                            Text("N/A")
+                                .font(.title)
+                                .foregroundColor(.white)
+                                .bold()
+                        .onTapGesture {
+                            expandedView.toggle()
+                        }
+                        }
+                        
                     }
                         Text(viewModel.name)
                         .font(.largeTitle)
                         .foregroundColor(.white)
                         .bold()
+                        //.padding()
                         .multilineTextAlignment(.center)
                     
                     }
@@ -129,7 +143,10 @@ struct CardView : View {
                     withAnimation {
                         swipeCard(width: offset.width)
                         changeColor(width: offset.width)
+                    
                     }
+                    
+                    
                 }
                 )
             
@@ -140,12 +157,7 @@ struct CardView : View {
     
 
     
-    func arrayTest() {
-        // print("Test: ", viewModel.shoeInfo[count].name)
-        print("Test: ", viewModel.shoeInfo[count].name)
-        count += 1
-        print("COunt is ",count)
-    }
+
     
     struct GrowingButton: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
@@ -161,23 +173,29 @@ struct CardView : View {
     
     struct expandView : View
     {
+        
         @Binding var viewModel:ShoeViewModel
+       
         var body: some View{
         ExpandedView(viewModel: $viewModel)
+            
         }
+        
+        
     }
     func swipeCard(width: CGFloat){
         switch width {
-        case -500...(-150):
+        case -500...(-300):
             offset = CGSize(width: -500, height: 0)
-            arrayTest()
+            
+            //arrayTest()
             print("\(shoe) removed")
             // print(viewModel.shoeImages[shoeCount])
             
             
-        case 150...500:
+        case 300...500:
             offset = CGSize(width: 500, height: 0)
-            arrayTest()
+            //arrayTest()
             print("\(shoe) added")
             
         default:
@@ -197,6 +215,29 @@ struct CardView : View {
             colour = .green
         default:
             colour = .black
+        }
+    }
+    
+    public func arrayTest() {
+        // print("Test: ", viewModel.shoeInfo[count].name)
+        if count < viewModel.shoeInfo.count{
+        print("TEst array size: ", viewModel.shoeInfo.count)
+        count += 1
+        print("Test: ", viewModel.shoeInfo[count].name)
+        viewModel.name = viewModel.shoeInfo[count].name
+        viewModel.brand = viewModel.shoeInfo[count].brand
+        viewModel.releaseYear = viewModel.shoeInfo[count].releaseYear
+        viewModel.retailPrice = viewModel.shoeInfo[count].retailPrice
+        viewModel.estimatedMarketValue = viewModel.shoeInfo[count].estimatedMarketValue
+        viewModel.story = viewModel.shoeInfo[count].story
+        viewModel.image = viewModel.shoeInfo[count].image.original
+        viewModel.links = viewModel.shoeInfo[count].links.goat
+        
+    
+        print("viewModel.name is: ",viewModel.name)
+        }
+        else {
+            print("End of array")
         }
     }
 }

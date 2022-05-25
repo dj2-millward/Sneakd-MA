@@ -16,6 +16,7 @@ struct ContentView: View
     @State private var count: Int = 0
     @State var selected = 0
     var results: [String] = []
+   
     //var shoe: [String] = []
     
     @State private var shoe: [String] = ["Jordan", "Nike", "Adidas", "Fila"].reversed()
@@ -28,10 +29,10 @@ struct ContentView: View
         VStack{
             VStack(spacing: 4){
                 
-                Image("adidas")
+                Image("Logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 50, height: 50, alignment: .center)
+                    .frame(width: 100, height: 50, alignment: .center)
             }
             VStack{
                 HStack{
@@ -53,6 +54,7 @@ struct ContentView: View
                 ZStack(alignment: .top){
                     ForEach(shoe, id: \.self) { _shoe in
                         CardView(shoe: _shoe, viewModel: $viewModel, count: $count)
+                        
                     }
                 }
             }.onAppear(perform: viewModel.refresh)
@@ -93,6 +95,7 @@ struct ContentView: View
             .offset(y: -35)
             .foregroundColor(.black)
             .shadow(radius: 3)
+            
            // CurvedShape()
         }
         }.background(.white).edgesIgnoringSafeArea(.top)
@@ -101,6 +104,7 @@ struct ContentView: View
         
 
 }
+
 
 struct CurvedShape : View {
     var body: some View{
@@ -139,7 +143,7 @@ struct BotttomBar : View {
             Button(action:{
                 self.selected = 1
             }) {
-                Image(systemName: "heart.fill")
+                Image(systemName: "arrow.clockwise")
             }.foregroundColor(self.selected == 1 ? .yellow: .gray)
             Spacer().frame(width: 120)
             

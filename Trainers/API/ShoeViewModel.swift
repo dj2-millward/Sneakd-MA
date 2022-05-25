@@ -31,7 +31,7 @@ class ShoeViewModel: ObservableObject {
     }
     
     public func refresh() {
-        _APIService.searchShoe(Search: "Jordan%204%20Retro%20Kaws%20Black") { shoe in DispatchQueue.main.async {
+        _APIService.searchShoe(Search: "Jordan") { shoe in DispatchQueue.main.async {
             self.name = shoe.name
             self.brand = shoe.brand
             self.releaseYear = shoe.releaseYear
