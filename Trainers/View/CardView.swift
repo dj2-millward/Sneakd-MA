@@ -143,10 +143,10 @@ struct CardView : View {
                     withAnimation {
                         swipeCard(width: offset.width)
                         changeColor(width: offset.width)
-                    
+                        
                     }
                     
-                    
+                   
                 }
                 )
             
@@ -185,17 +185,17 @@ struct CardView : View {
     }
     func swipeCard(width: CGFloat){
         switch width {
-        case -500...(-300):
+        case -500...(-150):
             offset = CGSize(width: -500, height: 0)
             
-            //arrayTest()
+            arrayTest()
             print("\(shoe) removed")
             // print(viewModel.shoeImages[shoeCount])
             
             
-        case 300...500:
+        case 150...500:
             offset = CGSize(width: 500, height: 0)
-            //arrayTest()
+            arrayTest()
             print("\(shoe) added")
             
         default:
