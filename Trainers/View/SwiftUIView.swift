@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SwiftUIView: View {
     var body: some View {
-          HStack(){
+        HStack(){
             
             Image("adidas")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 30, height: 30, alignment: .center)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 30, height: 30, alignment: .center)
         }
-      
+        
     }
 }
 

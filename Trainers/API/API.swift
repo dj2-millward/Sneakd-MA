@@ -21,48 +21,48 @@ public final class API : NSObject
     }
     
     func getData(Search name: String){
-    
+        
         let headers = [
             "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
             "X-RapidAPI-Key": "dfde0b52cbmshd4263db8ca5ca2ap167c02jsn93257125b16e"
-            ]
+        ]
         
         
         let url = URL(string: "https://the-sneaker-database.p.rapidapi.com/search?limit=10&query=\(name)")
         guard url != nil else {
-
+            
             print ("Error creating URL object")
-
+            
             return
-           
-
+            
+            
         }
         //URL Request
-
+        
         var request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval:  10)
-
+        
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
-
+        
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
-
-           if error == nil && data != nil {
-
-                    let response = try! JSONDecoder().decode(Trainers.self, from: data!) 
-                    
+            
+            if error == nil && data != nil {
+                
+                let response = try! JSONDecoder().decode(Trainers.self, from: data!) 
+                
                 //self.completionHandler?(Trainers(response : response))
-                  
+                
                 self!.completionHandler?(ShoeInfo(response: response))
-                    
-          }
+                
             }
+        }
         
         dataTask.resume()
     }
-
     
-
+    
+    
 }
 
 
@@ -91,6 +91,6 @@ public struct image: Decodable
 public struct links: Decodable
 {
     let goat: String
-   
+    
 }
 

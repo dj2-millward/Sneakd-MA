@@ -12,7 +12,7 @@ struct CardView : View {
     var shoe: String
     @State public var offset = CGSize.zero
     @State private var colour: Color = .gray
-   
+    
     @Binding var viewModel:ShoeViewModel
     @Binding var count: Int
     
@@ -24,11 +24,11 @@ struct CardView : View {
     var body: some View{
         HStack{
             ZStack(alignment: .top){
-               
+                
                 
                 Rectangle()
                     .frame(height: 500)
-                    //.border(.white, width: 3.0)
+                //.border(.white, width: 3.0)
                     .cornerRadius(20)
                     .foregroundColor(colour.opacity(0.9))
                     .shadow(radius: 2)
@@ -50,7 +50,7 @@ struct CardView : View {
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame( maxHeight: 250)
-                            //.border(.gray, width: 3)
+                        //.border(.gray, width: 3)
                             .onTapGesture {
                                 expandedView.toggle()
                             }
@@ -61,49 +61,49 @@ struct CardView : View {
                         
                     })
                     VStack{
-                    HStack{
-                        Text(viewModel.brand)
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .bold()
-                        Image(systemName: "poweron")
-                            .font(.title)
-                            .foregroundColor(.white)
-                        
-                        if (viewModel.releaseYear != ""){
-                        Text(viewModel.releaseYear)
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .bold()
-                    .onTapGesture {
-                        expandedView.toggle()
-                    }
-                        }else{
-                            Text("N/A")
+                        HStack{
+                            Text(viewModel.brand)
                                 .font(.title)
                                 .foregroundColor(.white)
                                 .bold()
-                        .onTapGesture {
-                            expandedView.toggle()
+                            Image(systemName: "poweron")
+                                .font(.title)
+                                .foregroundColor(.white)
+                            
+                            if (viewModel.releaseYear != ""){
+                                Text(viewModel.releaseYear)
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .bold()
+                                    .onTapGesture {
+                                        expandedView.toggle()
+                                    }
+                            }else{
+                                Text("N/A")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .bold()
+                                    .onTapGesture {
+                                        expandedView.toggle()
+                                    }
+                            }
+                            
                         }
-                        }
+                        Text(viewModel.name)
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .bold()
+                        //.padding()
+                            .multilineTextAlignment(.center)
                         
                     }
-                        Text(viewModel.name)
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
-                        .bold()
-                        //.padding()
-                        .multilineTextAlignment(.center)
                     
-                    }
-                   
                     HStack
                     {
                         Button {
                             //next card
                             
-                         
+                            
                         } label: {
                             Image(systemName: "trash.fill")
                         }
@@ -113,7 +113,7 @@ struct CardView : View {
                         Spacer().frame(width: 150)
                         Button {
                             //next card
-                         
+                            
                         } label: {
                             Image(systemName: "heart.fill")
                         }
@@ -146,7 +146,7 @@ struct CardView : View {
                         
                     }
                     
-                   
+                    
                 }
                 )
             
@@ -155,9 +155,9 @@ struct CardView : View {
         }
     }
     
-
     
-
+    
+    
     
     struct GrowingButton: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
@@ -175,9 +175,9 @@ struct CardView : View {
     {
         
         @Binding var viewModel:ShoeViewModel
-       
+        
         var body: some View{
-        ExpandedView(viewModel: $viewModel)
+            ExpandedView(viewModel: $viewModel)
             
         }
         
@@ -221,20 +221,20 @@ struct CardView : View {
     public func arrayTest() {
         // print("Test: ", viewModel.shoeInfo[count].name)
         if count < viewModel.shoeInfo.count{
-        print("TEst array size: ", viewModel.shoeInfo.count)
-        count += 1
-        print("Test: ", viewModel.shoeInfo[count].name)
-        viewModel.name = viewModel.shoeInfo[count].name
-        viewModel.brand = viewModel.shoeInfo[count].brand
-        viewModel.releaseYear = viewModel.shoeInfo[count].releaseYear
-        viewModel.retailPrice = viewModel.shoeInfo[count].retailPrice
-        viewModel.estimatedMarketValue = viewModel.shoeInfo[count].estimatedMarketValue
-        viewModel.story = viewModel.shoeInfo[count].story
-        viewModel.image = viewModel.shoeInfo[count].image.original
-        viewModel.links = viewModel.shoeInfo[count].links.goat
-        
-    
-        print("viewModel.name is: ",viewModel.name)
+            print("TEst array size: ", viewModel.shoeInfo.count)
+            count += 1
+            print("Test: ", viewModel.shoeInfo[count].name)
+            viewModel.name = viewModel.shoeInfo[count].name
+            viewModel.brand = viewModel.shoeInfo[count].brand
+            viewModel.releaseYear = viewModel.shoeInfo[count].releaseYear
+            viewModel.retailPrice = viewModel.shoeInfo[count].retailPrice
+            viewModel.estimatedMarketValue = viewModel.shoeInfo[count].estimatedMarketValue
+            viewModel.story = viewModel.shoeInfo[count].story
+            viewModel.image = viewModel.shoeInfo[count].image.original
+            viewModel.links = viewModel.shoeInfo[count].links.goat
+            
+            
+            print("viewModel.name is: ",viewModel.name)
         }
         else {
             print("End of array")
